@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuizQuestionsActivity">
-
+    tools:context=".SinglePlayerActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="top"
         android:padding="16dp"
-        android:background="@drawable/ic_question_bg">
+        android:background="@drawable/ic_bg">
 
         <TextView
             android:id="@+id/tv_question"
@@ -21,16 +20,9 @@
             android:layout_margin="10dp"
             android:gravity="center"
             android:textColor="@android:color/white"
-            android:text="What country does this flag belong to?"
+            android:background="@android:color/holo_blue_light"
+            android:text="Question Text"
             android:textSize="30dp"/>
-
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_flag_of_argentina"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,7 +31,7 @@
             android:orientation="horizontal"
             >
             <ProgressBar
-                android:id="@+id/progress_bar"
+                android:id="@+id/pb_progress"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -61,7 +53,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_option_one"
+            android:id="@+id/tv_option_a"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -72,7 +64,7 @@
             android:textSize="18sp"
             tools:text="Apple" />
         <TextView
-            android:id="@+id/tv_option_two"
+            android:id="@+id/tv_option_b"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -83,7 +75,7 @@
             android:textSize="18sp"
             tools:text="Apple" />
         <TextView
-            android:id="@+id/tv_option_three"
+            android:id="@+id/tv_option_c"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -94,7 +86,7 @@
             android:textSize="18sp"
             tools:text="Apple" />
         <TextView
-            android:id="@+id/tv_option_four"
+            android:id="@+id/tv_option_d"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -104,7 +96,6 @@
             android:textColor="@color/dark_gray"
             android:textSize="18sp"
             tools:text="Apple" />
-
         <Button
             android:id="@+id/btn_submit"
             android:layout_width="match_parent"
@@ -113,9 +104,10 @@
             android:padding="15dp"
             android:text="SUBMIT"
             android:textColor="@android:color/white"
+            android:background="@android:color/holo_blue_bright"
             android:textSize="18sp"
             android:textStyle="bold"
             />
-
     </LinearLayout>
+
 </ScrollView>

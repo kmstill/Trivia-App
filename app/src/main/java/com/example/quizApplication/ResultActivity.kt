@@ -12,14 +12,14 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        val username=intent.getStringExtra(Constants.USER_NAME)
-        findViewById<TextView>(R.id.tv_name).text=username
-        val total_questions=intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
-        val correct_answers=intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
-        findViewById<TextView>(R.id.tv_score).text="Your score is $correct_answers out of $total_questions."
+        //val username=intent.getStringExtra(Constants.USER_NAME)
+        //findViewById<TextView>(R.id.tv_name).text=username
+        //val total_questions=intent.getIntExtra(Constants.TOTAL_QUESTIONS, 0)
+        //val correct_answers=intent.getIntExtra(Constants.CORRECT_ANSWERS, 0)
+        //findViewById<TextView>(R.id.tv_score).text="Your score is $correct_answers out of $total_questions."
 
-        findViewById<Button>(R.id.btn_finish).setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java ))
-        }
+        //findViewById<Button>(R.id.btn_finish).setOnClickListener {
+           // startActivity(Intent(this, StartActivity::class.java ))
+        //}
     }
 }

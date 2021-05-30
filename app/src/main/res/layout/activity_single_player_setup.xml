@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/ic_bg"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Enter Game Info"
+        android:textSize="50dp"
+        android:textColor="@android:color/white"/>
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/round_primary_bg"
+        android:contentDescription="image"
+        android:src="@drawable/ic_logo" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_primary_bg"
+        android:layout_gravity="center"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <EditText
+                android:text="kev"
+                android:id="@+id/et_player_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/round_primary_bg"
+                android:hint=" Player Nickname"
+                android:textColorHint="@color/light_gray"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                />
+            <EditText
+                android:text = "11"
+                android:id="@+id/et_num_questions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/round_primary_bg"
+                android:hint=" Number of Questions (0-20)"
+                android:textColorHint="@color/light_gray"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                />
+            <Button
+                android:id="@+id/btn_play_game"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/round_primary_bg"
+                android:gravity="center"
+                android:text="Play Game!"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/round_primary_bg"
+        android:gravity="center"
+        android:text="Logout"
+        android:textSize="10sp"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="150dp" />
+</LinearLayout>
