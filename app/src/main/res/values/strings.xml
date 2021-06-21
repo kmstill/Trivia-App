@@ -1,6 +1,9 @@
 <resources>
+    <string name="welcome_message">Welcome to Quiz Challenge!</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="enter_credentials">Enter your email and password</string>
     <string name="app_name">Quiz Application</string>
-    <string name="welcome">Welcome!</string>
     <string name="enter_name">Please enter your name</string>
     <string name="start">START</string>
     <string name="name">Name</string>
