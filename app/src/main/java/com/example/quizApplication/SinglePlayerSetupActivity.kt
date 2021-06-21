@@ -1,6 +1,5 @@
 package com.example.quizApplication
 
-import TestActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,27 +18,42 @@ class SinglePlayerSetupActivity : AppCompatActivity() {
         val etNumQuestions = findViewById<TextView>(R.id.et_num_questions)
 
 
-        findViewById<Button>(R.id.btn_play_game).setOnClickListener{
-            when{
-                etPlayer1.text.isEmpty() or etNumQuestions.text.isEmpty() ->{
-                    Toast.makeText(baseContext, "All fields must be filled out",
-                        Toast.LENGTH_SHORT).show()
-                }!etNumQuestions.text.isDigitsOnly() or (etNumQuestions.text.toString().toInt() < 1)
-                or (etNumQuestions.text.toString().toInt() > 20) -> {
-                    Toast.makeText(baseContext, "Number of questions must be a number between 0 and 20",
-                        Toast.LENGTH_SHORT).show()
-                }else -> {
-                    val intent = Intent(this, TestActivity::class.java)
-                    intent.putExtra(Constants.P1_NAME, etPlayer1.text.toString())
-                    intent.putExtra(Constants.NUM_QUESTIONS, etNumQuestions.text.toString().toInt())
-                    startActivity(intent)
+        findViewById<Button>(R.id.btn_play_game).setOnClickListener {
+            when {
+                etPlayer1.text.isEmpty() or etNumQuestions.text.isEmpty() -> {
+                    Toast.makeText(
+                        baseContext, "All fields must be filled out",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                !etNumQuestions.text.isDigitsOnly() or (etNumQuestions.text.toString().toInt() < 1)
+                        or (etNumQuestions.text.toString().toInt() > 20) -> {
+                    Toast.makeText(
+                        baseContext, "Number of questions must be a number between 0 and 20",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {
+                    val singlePlayerIntent = Intent(this, SinglePlayerActivity::class.java)
+                    singlePlayerIntent.putExtra(Constants.USER_NAME, etPlayer1.text.toString())
+                    singlePlayerIntent.putExtra(
+                        Constants.NUM_QUESTIONS,
+                        etNumQuestions.text.toString().toInt()
+                    )
+                    singlePlayerIntent.putExtra(
+                        Constants.USER_ID,
+                        intent.getStringExtra(Constants.USER_ID)
+                    )
+                    startActivity(singlePlayerIntent)
                 }
             }
         }
         findViewById<Button>(R.id.btn_logout).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            Toast.makeText(baseContext, "Logged Out",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                baseContext, "Logged Out",
+                Toast.LENGTH_SHORT
+            ).show()
             startActivity(Intent(this, StartActivity::class.java))
         }
     }

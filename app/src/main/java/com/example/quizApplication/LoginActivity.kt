@@ -30,24 +30,23 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signIn(email: String, password: String) {
-        // [START sign_in_with_email]
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
-                    Toast.makeText(baseContext, "Login Successful",
-                        Toast.LENGTH_SHORT).show()
-                    //val user = auth.currentUser
-                    startActivity(Intent(this, SelectModeActivity::class.java))
+                    Toast.makeText(
+                        baseContext, "Login Successful",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    var mainMenuIntent = Intent(this, MainMenuActivity::class.java)
+                    mainMenuIntent.putExtra(Constants.USER_ID, auth.uid)
+                    startActivity(mainMenuIntent)
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-        // [END sign_in_with_email]
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -58,10 +57,5 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         return super.onContextItemSelected(item)
-    }
-
-
-    companion object {
-        private const val TAG = "EmailPassword"
     }
 }

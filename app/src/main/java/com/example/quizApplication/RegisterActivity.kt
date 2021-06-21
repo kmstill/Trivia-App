@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.util.Patterns
 import android.view.MenuItem
 import android.widget.Button
@@ -12,6 +11,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
@@ -21,7 +21,6 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val email = findViewById<EditText>(R.id.et_email)
         val password = findViewById<EditText>(R.id.et_password)
         val confirmPassword = findViewById<EditText>(R.id.et_confirm_password)
@@ -33,14 +32,18 @@ class RegisterActivity : AppCompatActivity() {
             when {
                 !isValidEmail(emailString) -> {
                     Toast.makeText(this, "Enter a valid email!", Toast.LENGTH_SHORT).show()
-                    }
-                passwordString.length < 8 ->{
-                    Toast.makeText(this, "Password must be at least 8 characters!", Toast.LENGTH_SHORT).show()
                 }
-                passwordString !=confirmPassword.text.toString() ->{
+                passwordString.length < 8 -> {
+                    Toast.makeText(
+                        this,
+                        "Password must be at least 8 characters!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                passwordString != confirmPassword.text.toString() -> {
                     Toast.makeText(this, "Passwords must match!", Toast.LENGTH_SHORT).show()
                 }
-                else ->{
+                else -> {
                     createAccount(emailString, passwordString)
                 }
             }
@@ -61,7 +64,7 @@ class RegisterActivity : AppCompatActivity() {
      * Email validation function taken from stackoverflow:
      * https://stackoverflow.com/questions/1819142/how-should-i-validate-an-e-mail-address
      */
-    private fun isValidEmail(email: String): Boolean{
+    private fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
@@ -70,34 +73,34 @@ class RegisterActivity : AppCompatActivity() {
      * Taken from firebase documentation:
      * https://firebase.google.com/docs/auth/android/password-auth
      */
-    private fun createAccount(email: String, password: String){
-        // [START create_user_with_email]
+    private fun createAccount(email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    Toast.makeText(baseContext, "Registration Successful.",
-                        Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, SelectModeActivity::class.java))
+                    addUserStatsToDatabase()
+                    Toast.makeText(
+                        baseContext, "Registration Successful.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    var mainMenuIntent = Intent(this, MainMenuActivity::class.java)
+                    mainMenuIntent.putExtra(Constants.USER_ID, auth.uid)
+                    startActivity(mainMenuIntent)
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-        // [END create_user_with_email]
     }
 
-    /**
-     * TAG definition from firebase documentation
-     *https://github.com/firebase/snippets-android/blob/14cfefcaf00f9aae6f613281f46000d15f9047be/
-     * auth/app/src/main/java/com/google/firebase/quickstart/auth/kotlin/EmailPasswordActivity.kt#L41-L55
-     */
-    companion object {
-        private const val TAG = "EmailPassword"
+    private fun addUserStatsToDatabase() {
+        val userId = auth.currentUser?.uid
+        val database = Firebase.database.reference
+        if (userId != null) {
+            val userStats = UserStats()
+            database.child("Users").child(userId).setValue(userStats)
+        }
     }
 
 }

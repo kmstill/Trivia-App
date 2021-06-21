@@ -36,9 +36,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:max="10"
                 android:minHeight="50dp"
-                android:progress="0"
+                android:progress="1"
                 android:indeterminate="false"
                 />
             <TextView

@@ -4,27 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_bg"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".ResultActivity">
-
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Result"
-        android:textColor="@android:color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+    tools:context=".SinglePlayerResultsActivity">
 
     <ImageView
         android:id="@+id/iv_trophy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="image"
-        android:src="@drawable/ic_trophy"/>
+        android:src="@drawable/ic_trophy" />
 
     <TextView
         android:id="@+id/tv_congratulations"
@@ -34,17 +24,7 @@
         android:text="Congratulations!"
         android:textColor="@android:color/white"
         android:textSize="25sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Username"
-        android:textColor="@android:color/white"
-        android:textSize="22sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_score"
@@ -54,17 +34,17 @@
         android:text="Your Score"
         android:textColor="@android:color/secondary_text_dark"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btn_finish"
+        android:id="@+id/btn_main_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@android:color/white"
-        android:text="Finish"
+        android:text="Back to main menu"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </LinearLayout>
