@@ -17,7 +17,6 @@ class SinglePlayerSetupActivity : AppCompatActivity() {
         val etPlayer1 = findViewById<TextView>(R.id.et_player_1)
         val etNumQuestions = findViewById<TextView>(R.id.et_num_questions)
 
-
         findViewById<Button>(R.id.btn_play_game).setOnClickListener {
             when {
                 etPlayer1.text.isEmpty() or etNumQuestions.text.isEmpty() -> {

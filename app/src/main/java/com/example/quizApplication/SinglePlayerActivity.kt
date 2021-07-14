@@ -51,7 +51,7 @@ class SinglePlayerActivity : AppCompatActivity(), View.OnClickListener {
         getQuestion(tvOptA, tvOptB, tvOptC, tvOptD, tvQuestion)
         defaultOptionsView(this, tvOptA, tvOptB, tvOptC, tvOptD, btnSubmit)
         pbProgress.max = mNumQuestions
-        tvProgress.text = "1" + "/" + pbProgress.max
+        tvProgress.text = "1/${pbProgress.max}"
 
         //set onCLick listeners for buttons
         tvOptA.setOnClickListener(this)

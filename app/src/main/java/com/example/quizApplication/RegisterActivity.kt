@@ -16,8 +16,6 @@ import com.google.firebase.ktx.Firebase
 
 class RegisterActivity : AppCompatActivity() {
 
-    private val auth: FirebaseAuth = Firebase.auth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -74,10 +72,11 @@ class RegisterActivity : AppCompatActivity() {
      * https://firebase.google.com/docs/auth/android/password-auth
      */
     private fun createAccount(email: String, password: String) {
+        val auth: FirebaseAuth = Firebase.auth
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    addUserStatsToDatabase()
+                    addUserStatsToDatabase(auth)
                     Toast.makeText(
                         baseContext, "Registration Successful.",
                         Toast.LENGTH_SHORT
@@ -94,7 +93,7 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
-    private fun addUserStatsToDatabase() {
+    private fun addUserStatsToDatabase(auth: FirebaseAuth) {
         val userId = auth.currentUser?.uid
         val database = Firebase.database.reference
         if (userId != null) {

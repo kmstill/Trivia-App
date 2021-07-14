@@ -23,7 +23,6 @@ class MainMenuActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         var userId = intent.getStringExtra(Constants.USER_ID)
-        Log.d("fuck", "main menu uid: $userId")
         when(v?.id){
             R.id.btn_multiplayer_online ->{
                 //val multiPlayerIntent = Intent(this,MultiPlayerSetupActivity::class.java)
