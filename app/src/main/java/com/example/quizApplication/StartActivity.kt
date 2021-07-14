@@ -17,7 +17,6 @@ class StartActivity : AppCompatActivity() {
         login=findViewById<Button>(R.id.btn_login)
         register=findViewById<Button>(R.id.btn_register)
 
-
         login!!.setOnClickListener(View.OnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
