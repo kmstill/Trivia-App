@@ -76,7 +76,7 @@ class RegisterActivity : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    addUserStatsToDatabase(auth)
+                    addUserStatsToDatabase(auth, email)
                     Toast.makeText(
                         baseContext, "Registration Successful.",
                         Toast.LENGTH_SHORT
@@ -93,12 +93,14 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
-    private fun addUserStatsToDatabase(auth: FirebaseAuth) {
+    private fun addUserStatsToDatabase(auth: FirebaseAuth, email: String) {
         val userId = auth.currentUser?.uid
         val database = Firebase.database.reference
         if (userId != null) {
+            val user = database.child("Users").child(userId)
             val userStats = UserStats()
-            database.child("Users").child(userId).setValue(userStats)
+            user.child("stats").setValue(userStats)
+            user.child("email").setValue(email)
         }
     }
 

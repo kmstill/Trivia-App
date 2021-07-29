@@ -15,10 +15,9 @@ class SinglePlayerResultsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_player_results)
-
         //Initialize Fields
+        Log.d("kevDebug", "in results")
         val userId = intent.getStringExtra(Constants.USER_ID)
-
         displayResults()
         getCurrentStats(userId)
 
@@ -30,6 +29,7 @@ class SinglePlayerResultsActivity : AppCompatActivity() {
     }
 
     private fun displayResults() {
+        Log.d("kevDebug", "in displayResults()")
         val username = intent.getStringExtra(Constants.USER_NAME)
         val totalQuestions = intent.getIntExtra(Constants.NUM_QUESTIONS, 0)
         val correctAnswers = intent.getIntExtra(Constants.NUM_CORRECT, 0)
@@ -39,9 +39,9 @@ class SinglePlayerResultsActivity : AppCompatActivity() {
     }
 
     private fun getCurrentStats(userId: String?) {
-        val database = userId?.let { Firebase.database.reference.child("Users").child(it) }!!
+        Log.d("kevDebug", "in getCurrentStats()")
+        val database = userId?.let { Firebase.database.reference.child("Users").child(it).child("stats") }!!
         database.get().addOnSuccessListener {
-            Log.d("fuck", "in onsuccesslistener")
             val gameNumQuestions = intent.getIntExtra(Constants.NUM_QUESTIONS, 0)
             val gameNumCorrect = intent.getIntExtra(Constants.NUM_CORRECT, 0)
             val currNumGamesPlayed = it.child("gamesPlayed").getValue(false).toString().toInt()
@@ -49,14 +49,14 @@ class SinglePlayerResultsActivity : AppCompatActivity() {
             val currNumCorrect = it.child("correctAnswers").getValue(false).toString().toInt()
             val userStats =
                 UserStats(
-                    (currNumGamesPlayed + 1),
+                    currNumGamesPlayed + 1,
                     currNumQuestions + gameNumQuestions,
                     currNumCorrect + gameNumCorrect
                 )
             database.setValue(userStats)
+            Log.d("kevDebug", "statsucc")
         }.addOnFailureListener {
-            Log.d("fuck", "exception")
+            Log.d("kevDebug", "statfail")
         }
-
     }
 }

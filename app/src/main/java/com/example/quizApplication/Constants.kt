@@ -12,8 +12,8 @@ enum class AnswerOptions {
     A, B, C, D, NoneSelected
 }
 
-data class UserStats (
-    val gamesPlayed:Int = 0,
-    val totalQuestions:Int = 0,
-    val correctAnswers:Int = 0,
-    )
+data class UserStats(
+    val gamesPlayed: Int = 0,
+    val totalQuestions: Int = 0,
+    val correctAnswers: Int = 0,
+)
